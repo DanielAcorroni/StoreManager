@@ -22,7 +22,7 @@ const createProdService = async (name) => {
   const createStat = await storeModel.createProdModel(name);
   const returnObj = {
     id: createStat.insertId,
-    name
+    name,
   };
   return returnObj;
 };
