@@ -14,7 +14,17 @@ const productByIdController = async (req, res) => {
   return res.status(200).json(response);
 };
 
+const createProdController = async (req, res) => {
+  const { name } = req.body;
+  const creationStat = await storeServices.createProdService(name);
+  if (!creationStat) {
+    return res.status(409).json({ message: 'Product already exists' });
+  }
+  return res.status(201).json(creationStat);
+};
+
 module.exports = {
   productController,
   productByIdController,
+  createProdController,
 };
