@@ -11,4 +11,4 @@ const productValidation = (req, res, next) => {
 
 module.exports = {
   productValidation,
-}
+};
