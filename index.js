@@ -3,6 +3,7 @@ const app = require('./app');
 require('dotenv').config();
 
 const storeControllers = require('./controllers/storeController');
+const storeMiddlewares = require('./middlewares/storeMiddleware');
 
 app.use(bodyParser.json());
 
@@ -16,4 +17,6 @@ app.get('/products', storeControllers.productController);
 
 app.get('/products/:id', storeControllers.productByIdController);
 
-app.post('/products', storeControllers.createProdController);
+app.post('/products',
+  storeMiddlewares.productValidation,
+  storeControllers.createProdController);
