@@ -13,7 +13,22 @@ const productFilterById = async (id) => {
   return response[0];
 };
 
+const createProdService = async (name) => {
+  const allProd = await storeModel.getAllProducts();
+  const isNameUnique = allProd.some(({ name: prodName }) => prodName === name);
+  if (isNameUnique) {
+    return false;
+  }
+  const createStat = await storeModel.createProdModel(name);
+  const returnObj = {
+    id: createStat.insertId,
+    name
+  };
+  return returnObj;
+};
+
 module.exports = {
   productServices,
   productFilterById,
+  createProdService,
 };
