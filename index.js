@@ -1,7 +1,9 @@
+const bodyParser = require('body-parser');
 const app = require('./app');
 require('dotenv').config();
-const bodyParser = require('body-parser');
+
 const storeControllers = require('./controllers/storeController');
+const storeMiddlewares = require('./middlewares/storeMiddleware');
 app.use(bodyParser.json());
 
 // não altere esse arquivo, essa estrutura é necessária para à avaliação do projeto
