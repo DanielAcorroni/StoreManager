@@ -27,8 +27,22 @@ const createProdService = async (name) => {
   return returnObj;
 };
 
+const createSaleService = async (sales) => {
+  const createSaleStat = await storeModel.createSaleModel();
+  const { insertId: saleId } = createSaleStat;
+  await sales.forEach(async ({ productId, quantity }) => {
+    await storeModel.createSaleProdModel({ saleId, productId, quantity });
+  });
+  const returnObj = {
+    id: saleId,
+    itemsSold: sales,
+  };
+  return returnObj;
+};
+
 module.exports = {
   productServices,
   productFilterById,
   createProdService,
+  createSaleService,
 };
