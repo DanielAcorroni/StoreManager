@@ -27,7 +27,7 @@ const createSaleController = async (req, res) => {
   const sales = req.body;
   const createStat = await storeServices.createSaleService(sales);
   return res.status(201).json(createStat);
-}
+};
 
 module.exports = {
   productController,

@@ -21,4 +21,7 @@ app.post('/products',
   storeMiddlewares.productValidation,
   storeControllers.createProdController);
 
-app.post('/sales', storeMiddlewares.saleValidation, storeMiddlewares.doesProdExist, storeControllers.createSaleController);
+app.post('/sales',
+  storeMiddlewares.saleValidation,
+  storeMiddlewares.doesProdExist,
+  storeControllers.createSaleController);

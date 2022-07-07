@@ -12,7 +12,6 @@ const productValidation = (req, res, next) => {
 };
 
 const doesProdExist = async (req, res, next) => {
-  let error = null;
   const sales = req.body;
   const prodId = sales.map(({ productId }) => productId);
   const allItens = await storeModels.getAllProducts();
@@ -37,7 +36,6 @@ const saleErrorChecker = (sales) => {
       error = { status: 422, message: '"quantity" must be greater than or equal to 1' };
     }
   });
-  console.log('saleErrorChecker');
   return error;
 };
 
@@ -48,7 +46,6 @@ const saleValidation = (req, res, next) => {
   if (error) {
     return res.status(error.status).json({ message: error.message });
   }
-  console.log('saleValidation');
   next();
 };
 
