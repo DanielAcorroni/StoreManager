@@ -20,3 +20,5 @@ app.get('/products/:id', storeControllers.productByIdController);
 app.post('/products',
   storeMiddlewares.productValidation,
   storeControllers.createProdController);
+
+app.post('/sales', storeMiddlewares.saleValidation, storeMiddlewares.doesProdExist, storeControllers.createSaleController);
