@@ -49,5 +49,5 @@ module.exports = {
   createProdController,
   createSaleController,
   salesController,
-  salesByIdController
+  salesByIdController,
 };
