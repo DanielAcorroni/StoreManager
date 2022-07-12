@@ -63,7 +63,7 @@ const createSaleProdModel = async ({ saleId, productId, quantity }) => {
   );
 };
 
-const updateProdModel = async ({ name, quantity, id }) => {
+const updateProdModel = async ({ name, id }) => {
   await connection.execute(
     'UPDATE StoreManager.products SET name = ? WHERE id = ?;',
     [name, id],

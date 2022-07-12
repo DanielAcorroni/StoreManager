@@ -85,7 +85,7 @@ const updateProdService = async ({ name, id }) => {
   await storeModel.updateProdModel({ name, id });
   const returnObj = {
     id,
-    name
+    name,
   };
   return returnObj;
 };
