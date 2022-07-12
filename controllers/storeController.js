@@ -14,6 +14,20 @@ const productByIdController = async (req, res) => {
   return res.status(200).json(response);
 };
 
+const salesController = async (_req, res) => {
+  const response = await storeServices.salesServices();
+  return res.status(200).json(response);
+};
+
+const salesByIdController = async (req, res) => {
+  const { id } = req.params;
+  const response = await storeServices.salesServicesById(id);
+  if (!response) {
+    return res.status(404).json({ message: 'Sale not found' });
+  }
+  return res.status(200).json(response);
+};
+
 const createProdController = async (req, res) => {
   const { name } = req.body;
   const creationStat = await storeServices.createProdService(name);
@@ -34,4 +48,6 @@ module.exports = {
   productByIdController,
   createProdController,
   createSaleController,
+  salesController,
+  salesByIdController
 };
