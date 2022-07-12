@@ -13,6 +13,42 @@ const productFilterById = async (id) => {
   return response[0];
 };
 
+const salesServices = async () => {
+  const salesResponse = await storeModel.getAllSales();
+  const salesProductsResponse = await storeModel.getAllSalesProducts();
+  const response = [];
+  salesProductsResponse.forEach((saleProd) => {
+    const filteredSale = salesResponse.filter(({ id }) => Number(id) === Number(saleProd.saleId));
+    const saleProdPush = {
+      saleId: saleProd.saleId,
+      date: filteredSale[0].date,
+      productId: saleProd.productId,
+      quantity: saleProd.quantity,
+    };
+    response.push(saleProdPush);
+  });
+  
+  return response;
+};
+
+const salesServicesById = async (id) => {
+  const salesResponse = await storeModel.getAllSalesById(id);
+  const saleProdResponse = await storeModel.getAllSalesProductsById(id);
+  const response = [];
+  if (salesResponse.length === 0) {
+    return false;
+  }
+  saleProdResponse.forEach(({ productId, quantity }) => {
+    const saleProdPush = {
+      date: salesResponse[0].date,
+      productId,
+      quantity,
+    };
+    response.push(saleProdPush);
+  });
+  return response;
+};
+
 const createProdService = async (name) => {
   const allProd = await storeModel.getAllProducts();
   const isNameUnique = allProd.some(({ name: prodName }) => prodName === name);
@@ -45,4 +81,6 @@ module.exports = {
   productFilterById,
   createProdService,
   createSaleService,
+  salesServices,
+  salesServicesById
 };
