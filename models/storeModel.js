@@ -11,6 +11,16 @@ const getAllProducts = async () => {
   return products;
 };
 
+const getAllSales = async () => {
+  const [sales] = await connection.execute('SELECT * FROM StoreManager.sales;');
+  return sales;
+};
+
+const getAllSalesProducts = async () => {
+  const [salesProducts] = await connection.execute('SELECT * FROM StoreManager.sales_products;');
+  return salesProducts.map(serialize);
+};
+
 const getAllProductsById = async (id) => {
   const [products] = await connection.execute('SELECT * FROM StoreManager.products WHERE id = ?;',
   [id]);
