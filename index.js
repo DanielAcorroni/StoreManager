@@ -17,6 +17,10 @@ app.get('/products', storeControllers.productController);
 
 app.get('/products/:id', storeControllers.productByIdController);
 
+app.get('/sales', storeControllers.salesController);
+
+app.get('/sales/:id', storeControllers.salesByIdController);
+
 app.post('/products',
   storeMiddlewares.productValidation,
   storeControllers.createProdController);
