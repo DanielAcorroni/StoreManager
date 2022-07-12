@@ -43,6 +43,16 @@ const createSaleController = async (req, res) => {
   return res.status(201).json(createStat);
 };
 
+const updateProdController = async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  const updateStat = await storeServices.updateProdService({ id, name });
+  if (!updateStat) {
+    return res.status(404).json({ message: 'Product not found' });
+  }
+  return res.status(200).json(updateStat);
+};
+
 module.exports = {
   productController,
   productByIdController,
@@ -50,4 +60,5 @@ module.exports = {
   createSaleController,
   salesController,
   salesByIdController,
+  updateProdController,
 };
