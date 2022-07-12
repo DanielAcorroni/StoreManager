@@ -30,7 +30,6 @@ describe('Testagem dos models de produtos', () => {
           {
             id: 1,
             name: 'Inosuke Mask',
-            quantity: 5,
           }
         ]
       ];
@@ -56,7 +55,6 @@ describe('Testagem dos models de produtos', () => {
           {
             id: 1,
             name: 'Inosuke Mask',
-            quantity: 5,
           }
         ]
       ];
@@ -72,7 +70,6 @@ describe('Testagem dos models de produtos', () => {
       expect(filterIdStat[0]).to.be.include({
         id: 1,
         name: 'Inosuke Mask',
-        quantity: 5,
       });
     })
   })
@@ -94,7 +91,7 @@ describe('Testagem dos models de produtos', () => {
       connection.execute.restore();
     })
     it('Testagem de objeto retornado pelo create', async () => {
-      const testObj = { name:'Tanjiro Katana', quantity: 8 };
+      const testObj = { name:'Tanjiro Katana' };
       const createStat = await storeModels.createProdModel(testObj);
       expect(createStat).to.be.an('object');
       expect(createStat.insertId).to.be.equal(4);

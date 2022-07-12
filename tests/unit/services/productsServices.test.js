@@ -24,7 +24,7 @@ describe('Testagem de services dos produtos', () => {
   })
   describe('- Testa getAll quando BD não está vazio', () => {
     before(() => {
-      sinon.stub(storeModels, 'getAllProducts').resolves([{id: 1, name: 'Narutos Kunai', quantity: 40}]);
+      sinon.stub(storeModels, 'getAllProducts').resolves([{id: 1, name: 'Narutos Kunai'}]);
     })
     after(() => {
       storeModels.getAllProducts.restore();
@@ -48,14 +48,14 @@ describe('Testagem de services dos produtos', () => {
   })
   describe('- Testa productFilterById', () => {
     before(() => {
-      sinon.stub(storeModels, 'getAllProductsById').resolves([{id: 1, name: 'Narutos Kunai', quantity: 40}]);
+      sinon.stub(storeModels, 'getAllProductsById').resolves([{id: 1, name: 'Narutos Kunai'}]);
     })
     after(() => {
       storeModels.getAllProductsById.restore();
     })
     it('Testa se retorna uma array', async () => {
       const result = await storeServices.productFilterById(1);
-      expect(result).to.include({id: 1, name: 'Narutos Kunai', quantity: 40});
+      expect(result).to.include({id: 1, name: 'Narutos Kunai'});
     })
     it('Testa se array retornada está vazia', async () => {
       storeModels.getAllProductsById.restore();
@@ -63,7 +63,7 @@ describe('Testagem de services dos produtos', () => {
       const result = await storeServices.productFilterById(7);
       expect(result).to.be.false;
       storeModels.getAllProductsById.restore();
-      sinon.stub(storeModels, 'getAllProductsById').resolves([{id: 1, name: 'Narutos Kunai', quantity: 40}]);
+      sinon.stub(storeModels, 'getAllProductsById').resolves([{id: 1, name: 'Narutos Kunai'}]);
     })
   })
 })
