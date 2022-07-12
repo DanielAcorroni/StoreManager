@@ -27,6 +27,20 @@ const getAllProductsById = async (id) => {
   return products;
 };
 
+const getAllSalesById = async (id) => {
+  const [sales] = await connection.execute('SELECT * FROM StoreManager.sales WHERE id = ?;',
+  [id]);
+  return sales;
+};
+
+const getAllSalesProductsById = async (saleId) => {
+  const [salesProducts] = await connection.execute(
+    'SELECT * FROM StoreManager.sales_products WHERE sale_id = ?;',
+    [saleId],
+  );
+  return salesProducts.map(serialize);
+};
+
 const createProdModel = async (name) => {
   const [result] = await connection.execute(
     'INSERT INTO StoreManager.products (name) VALUES (?);',
@@ -51,7 +65,11 @@ const createSaleProdModel = async ({ saleId, productId, quantity }) => {
 
 module.exports = {
   getAllProducts,
+  getAllSales,
+  getAllSalesProducts,
   getAllProductsById,
+  getAllSalesById,
+  getAllSalesProductsById,
   createProdModel,
   createSaleModel,
   createSaleProdModel,
