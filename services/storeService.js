@@ -76,6 +76,20 @@ const createSaleService = async (sales) => {
   return returnObj;
 };
 
+const updateProdService = async ({ name, id }) => {
+  const allProd = await storeModel.getAllProducts();
+  const doesProdExist = allProd.some(({ id: prodId }) => Number(prodId) === Number(id));
+  if (!doesProdExist) {
+    return false;
+  }
+  await storeModel.updateProdModel({ name, id });
+  const returnObj = {
+    id,
+    name
+  };
+  return returnObj;
+};
+
 module.exports = {
   productServices,
   productFilterById,
@@ -83,4 +97,5 @@ module.exports = {
   createSaleService,
   salesServices,
   salesServicesById,
+  updateProdService,
 };
